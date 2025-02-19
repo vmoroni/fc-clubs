@@ -12,11 +12,15 @@ body {
     height: 100vh;
 }
 
+.home {
+    display: flex;
+    justify-content: space-around !important;
+}
+
 .banco {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     display: flex;
     /* align-items: end; */
-    padding-top: 25px;
 
 }
 
@@ -96,10 +100,9 @@ body {
     position: relative;
     height: 675px;
     width: 900px;
-    margin: 0 auto;
     display: flex;
     align-items: end;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 .campo-imagem {
@@ -124,24 +127,28 @@ body {
 
 .player-template:is(.selecionado) {
     z-index: 5;
-    /* border: 1px solid white; */
 }
 
-.player-template-x {
+.player-template-menu {
     position: absolute;
     right: -10%;
     top: 10%;
     color: white;
     width: 40px;
-    height: 25px;
+    /* height: 25px; */
     text-align: center;
     background-color: #181818;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.player-template-x:hover {
+.player-template-menu > div {
+    width: 100%;
+}
+
+.player-template-menu>div:hover {
     background-color: #32373b;
 }
 
@@ -173,10 +180,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.player-template-card-captain>img {
-    height: 28px;
 
-}
 
 .player-template-card-overall {
     font-size: 1.2rem;
@@ -212,6 +216,21 @@ body {
     z-index: -1;
 }
 
+.player-template-card > div {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-template-card-captain {
+    text-align: center;
+}
+
+.player-template-card-captain>img {
+    height: 25px;
+}
+
 .player-template-card-position {
     text-transform: uppercase;
 }
@@ -225,5 +244,55 @@ body {
     text-overflow: ellipsis;
     text-wrap: nowrap;
     text-align: center;
-    /* width: 90%; */
+    display: block!important;
+}
+
+.definicoes {
+    width: 300px;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 8px;
+    /* display: flex; */
+}
+
+.seletor-formacao {
+    border: 1px solid white;
+    display: flex;
+    width: 150px;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #404040;
+}
+
+.seletor-formacao:hover {
+    border: 1px solid #0ff7a6;
+    background-color: #696969;
+}
+
+.formacoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 5px;
+}
+
+.formacao-item {
+    /* border: 1px solid white; */
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    /* margin: 5px 10px 5px 0; */
+    background-color: #404040;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 16px;
+}
+
+.formacao-item:hover {
+    background-color: #696969;
+    cursor: pointer;
 }

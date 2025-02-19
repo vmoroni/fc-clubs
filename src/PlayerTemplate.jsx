@@ -14,7 +14,9 @@ const PlayerTemplate = ({
     selecionado,
     jogadorSelecionado,
     setJogadorSelecionado,
-    removerTitular
+    removerTitular,
+    capitao,
+    setCapitao
 }) => {
     const handleClick = () => {
         selecionado
@@ -34,12 +36,19 @@ const PlayerTemplate = ({
                 left: `${x}%`,
                 top: `${y}%`,
             }}>
-            {selecionado && jogador?.id ?
-                <span
-                    className={`player-template-x`}
-                    onClick={() => removerTitular(jogadorSelecionado)}
-                ><IoClose />
-                </span> : null}
+            {selecionado && jogador?.id
+                ?
+                <div className='player-template-menu'>
+                    <div
+                        onClick={() => removerTitular(jogadorSelecionado)}
+                    ><IoClose />
+                    </div>
+                    <div
+                        onClick={() => setCapitao(jogadorSelecionado)}
+                    >C</div>
+                </div>
+                : null
+            }
             <div
                 className={`player-template-card ${selecionado ? 'selecionado' : ''}`}
                 style={{
@@ -51,7 +60,7 @@ const PlayerTemplate = ({
 
                         <>
                             <div className='player-template-card-captain'>
-                                {/* <img src={captain} /> */}
+                                {jogador?.id === capitao ? <img src={captain} /> : null}
                             </div>
                             <div className='player-template-card-name'> {jogador.nome} </div>
                             <div className='d-flex justify-content-around align-items-center'>
@@ -59,8 +68,8 @@ const PlayerTemplate = ({
                                 <div className='player-template-card-overall'> {jogador.geral} </div>
                             </div>
                             <div className='d-flex justify-content-around'>
-                                {/* <div className="nacionalidade">BRA</div>
-                    <div className="time-favorito">PAL</div> */}
+                                <div className="nacionalidade">BRA</div>
+                                <div className="time-favorito">PAL</div>
                             </div>
                         </>
                     ) : (

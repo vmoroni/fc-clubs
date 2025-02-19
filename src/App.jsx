@@ -4,23 +4,51 @@ import Form from 'react-bootstrap/Form';
 import { jogadores } from './assets/formacao.js';
 import PlayerTemplate from './PlayerTemplate';
 import SuplenteTemplate from './SuplenteTemplate.jsx';
+import TeamSettings from './TeamSettings.jsx';
 
 function App() {
-  const [formacoes, setFormacoes] = useState({
-    "4-3-3": [
-      { id: 1, x: 50, y: 82, posicao: "GL", jogadorId: null },
-      { id: 2, x: 30, y: 76, posicao: "ZGE", jogadorId: null },
-      { id: 3, x: 70, y: 76, posicao: "ZGD", jogadorId: null },
-      { id: 4, x: 11.5, y: 75, posicao: "LE", jogadorId: null },
-      { id: 5, x: 88.5, y: 75, posicao: "LD", jogadorId: null },
-      { id: 6, x: 50, y: 52.6, posicao: "VOL", jogadorId: null },
-      { id: 7, x: 23, y: 48, posicao: "MC", jogadorId: null },
-      { id: 8, x: 77, y: 48, posicao: "MC", jogadorId: null },
-      { id: 9, x: 50, y: 15.5, posicao: "ATA", jogadorId: null },
-      { id: 10, x: 19.5, y: 19, posicao: "PE", jogadorId: null },
-      { id: 11, x: 80.5, y: 19, posicao: "PD", jogadorId: null },
-    ]
-  });
+  const [formacoes, setFormacoes] = useState(
+    {
+      "4-3-3": [
+        { id: 1, x: 50, y: 82, posicao: "GL", jogadorId: null },
+        { id: 2, x: 30, y: 76, posicao: "ZGE", jogadorId: null },
+        { id: 3, x: 70, y: 76, posicao: "ZGD", jogadorId: null },
+        { id: 4, x: 11.5, y: 75, posicao: "LE", jogadorId: null },
+        { id: 5, x: 88.5, y: 75, posicao: "LD", jogadorId: null },
+        { id: 6, x: 50, y: 52.6, posicao: "VOL", jogadorId: null },
+        { id: 7, x: 23, y: 48, posicao: "MC", jogadorId: null },
+        { id: 8, x: 77, y: 48, posicao: "MC", jogadorId: null },
+        { id: 9, x: 50, y: 15.5, posicao: "ATA", jogadorId: null },
+        { id: 10, x: 19.5, y: 19, posicao: "PE", jogadorId: null },
+        { id: 11, x: 80.5, y: 19, posicao: "PD", jogadorId: null },
+      ],
+      "4-5-1": [
+        { id: 1, x: 50, y: 82, posicao: "GL", jogadorId: null },
+        { id: 2, x: 30, y: 76, posicao: "ZGE", jogadorId: null },
+        { id: 3, x: 70, y: 76, posicao: "ZGD", jogadorId: null },
+        { id: 4, x: 11.5, y: 75, posicao: "LE", jogadorId: null },
+        { id: 5, x: 88.5, y: 75, posicao: "LD", jogadorId: null },
+        { id: 6, x: 50, y: 52.6, posicao: "VOL", jogadorId: null },
+        { id: 7, x: 23, y: 48, posicao: "MC", jogadorId: null },
+        { id: 8, x: 77, y: 48, posicao: "MC", jogadorId: null },
+        { id: 9, x: 50, y: 15.5, posicao: "ATA", jogadorId: null },
+        { id: 10, x: 19.5, y: 19, posicao: "PE", jogadorId: null },
+        { id: 11, x: 80.5, y: 19, posicao: "PD", jogadorId: null },
+      ],
+      "4-2-3-1": [
+        { id: 1, x: 50, y: 82, posicao: "GL", jogadorId: null },
+        { id: 2, x: 30, y: 76, posicao: "ZGE", jogadorId: null },
+        { id: 3, x: 70, y: 76, posicao: "ZGD", jogadorId: null },
+        { id: 4, x: 11.5, y: 75, posicao: "LE", jogadorId: null },
+        { id: 5, x: 88.5, y: 75, posicao: "LD", jogadorId: null },
+        { id: 6, x: 50, y: 52.6, posicao: "VOL", jogadorId: null },
+        { id: 7, x: 23, y: 48, posicao: "MC", jogadorId: null },
+        { id: 8, x: 77, y: 48, posicao: "MC", jogadorId: null },
+        { id: 9, x: 50, y: 15.5, posicao: "ATA", jogadorId: null },
+        { id: 10, x: 19.5, y: 19, posicao: "PE", jogadorId: null },
+        { id: 11, x: 80.5, y: 19, posicao: "PD", jogadorId: null },
+      ]
+    });
   const [formacaoAtual, setFormacaoAtual] = useState("4-3-3");
   const [time, setTime] = useState({
     capitao: null,
@@ -31,9 +59,7 @@ function App() {
   const [jogadorSelecionado, setJogadorSelecionado] = useState({ posicaoId: null, jogadorId: null });
   const [suplenteSelecionado, setSuplenteSelecionado] = useState(null);
 
-  // useEffect(() => {
-  //   setTime((prevTime) => ({ ...prevTime, suplentes: jogadores }));
-  // }, []);
+  console.log(time);
 
   // É chamado sempre que o estado de jogadorSelecionado e suplenteSelecionado é alterado.
   useEffect(() => {
@@ -119,17 +145,15 @@ function App() {
     })
   }
 
+  const setCapitao = (jogadorSelecionado) => {
+    setTime((prevTime) => ({
+      ...prevTime,
+      capitao: jogadorSelecionado.jogadorId
+    }))
+  }
+
   return (
-    <div className="m-auto w-75 d-flex">
-      {/* <div className='p-5 border'>
-        <p>Formação</p>
-        <Form.Select size='sm' onChange={e => onFormationChange(e)}>
-          <option disabled>Selecione uma formação</option>
-          {formacao.map(item => (
-            <option key={item.id} value={item.id}>{item.display}</option>
-          ))}
-        </Form.Select>
-      </div> */}
+    <div className="home">
       <div className="banco">
         <ul>
           {time.suplentes.map(jogador => (
@@ -168,15 +192,18 @@ function App() {
                   setJogadorSelecionado={setJogadorSelecionado}
                   handleSubstituicao={handleSubstituicao}
                   removerTitular={removerTitular}
+                  capitao={time.capitao}
+                  setCapitao={setCapitao}
                 />
               )
             })
           }
         </div>
       </div>
-      <div className='definicoes'>
-        
-      </div>
+      <TeamSettings
+        formacoes={formacoes}
+        formacaoAtual={formacaoAtual}
+      />
     </div>
   )
 }
